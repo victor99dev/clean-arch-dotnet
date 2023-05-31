@@ -42,7 +42,7 @@ namespace Domain.UnitTests
         [Fact(DisplayName = "Create Category With a Name Null")]
         public void CreateCategory_WhithNullNameValue_DomainExceptionInvalidName()
         {
-            Action action = () => new Category(new Guid(), "");
+            Action action = () => new Category(new Guid(), null);
             action.Should().Throw<Domain.Validation.DomainExceptionValidation>();
         }
     }
