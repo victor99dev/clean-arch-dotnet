@@ -17,7 +17,7 @@ namespace Domain.UnitTests
         [Fact(DisplayName = "Create Product With Different ID")]
         public void CreateProduct_NegativeIdValue_DomainExceptionInvalidId()
         {
-            Action action = () => new Product(new Guid("a4f194c1-cd0b-4850-b730-80f8305b0f6e"), 
+            Action action = () => new Product(new Guid("a4f194c1-cd0b-4850-b730-80f8305b0f6e"),
                 "Product Name", "Product Description", 9.99m, 99, "product image");
             action.Should().Throw<Domain.Validation.DomainExceptionValidation>()
                 .WithMessage("Invalid Id value");
@@ -48,6 +48,13 @@ namespace Domain.UnitTests
         {
             Action action = () => new Product(new Guid(), "Product Name", "Product Description", 9.99m, 99, null);
             action.Should().NotThrow<Domain.Validation.DomainExceptionValidation>();
+        }
+
+        [Fact(DisplayName = "Create Product With a Image Name Null Referece Exception")]
+        public void CreateProduct_WithNullImageName_NoNullReferenceException()
+        {
+            Action action = () => new Product(new Guid(), "Product Name", "Product Description", 9.99m, 99, null);
+            action.Should().NotThrow<NullReferenceException>();
         }
 
         [Fact(DisplayName = "Create Product With Empty Image Name")]
