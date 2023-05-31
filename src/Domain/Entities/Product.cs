@@ -8,7 +8,7 @@ namespace Domain.Entities
         public string Description { get; private set; }
         public decimal Price { get; private set; }
         public int Stock { get; private set; }
-        public string Image { get; private set; }
+        public string? Image { get; private set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
 
@@ -19,7 +19,7 @@ namespace Domain.Entities
 
         public Product(Guid id, string name, string description, decimal price, int stock, string image)
         {
-            DomainExceptionValidation.When(Id != id, "Invalid Id value");
+            DomainExceptionValidation.When(id != Id, "Invalid Id value");
             ValidateDomain(name, description, price, stock, image);
             Id = id;
         }
@@ -46,7 +46,7 @@ namespace Domain.Entities
 
             DomainExceptionValidation.When(stock < 0, "Invalid stock value");
 
-            DomainExceptionValidation.When(image.Length > 250, "Invalid image name, too long maximo 250 characters");
+            DomainExceptionValidation.When(image?.Length > 250, "Invalid image name, too long, maximum 250 characters");
 
             Name = name;
             Description = description;

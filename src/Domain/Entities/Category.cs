@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Domain.Validation;
 
 namespace Domain.Entities
@@ -14,7 +15,7 @@ namespace Domain.Entities
 
         public Category(Guid id, string name)
         {
-            DomainExceptionValidation.When(Id != id, "Invalid Id value");
+            DomainExceptionValidation.When(id != Id, "Invalid Id value");
             ValidateDomain(name);
 
             Id = id;
