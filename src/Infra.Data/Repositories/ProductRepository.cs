@@ -27,7 +27,6 @@ namespace Infra.Data.Repositories
 
         public async Task<Product> GetProductCategoryAsync(string? id)
         {
-
             Guid productId = Guid.TryParse(id, out Guid parsedId) ? parsedId : Guid.Empty;
 
             return await _productContext.products
