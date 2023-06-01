@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Repositories
 {
@@ -14,32 +15,46 @@ namespace Infra.Data.Repositories
 
         public async Task<Product> CreateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _productContext.Add(product);
+            await _productContext.SaveChangesAsync();
+            return product;
         }
 
         public async Task<Product> GetByIdAsync(string? id)
         {
-            throw new NotImplementedException();
+            return await _productContext.products.FindAsync(id);
         }
 
         public async Task<Product> GetProductCategoryAsync(string? id)
         {
-            throw new NotImplementedException();
+
+            if (!Guid.TryParse(id, out Guid productId))
+            {
+                return null;
+            }
+
+            return await _productContext.products
+            .Include(c => c.Category)
+            .SingleOrDefaultAsync(p => p.Id == productId);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            throw new NotImplementedException();
+            return await _productContext.products.ToListAsync();
         }
 
         public async Task<Product> RemoveAsync(Product product)
         {
-            throw new NotImplementedException();
+            _productContext.Remove(product);
+            await _productContext.SaveChangesAsync();
+            return product;
         }
 
         public async Task<Product> UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _productContext.Update(product);
+            await _productContext.SaveChangesAsync();
+            return product;
         }
     }
 }
