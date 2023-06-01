@@ -28,10 +28,7 @@ namespace Infra.Data.Repositories
         public async Task<Product> GetProductCategoryAsync(string? id)
         {
 
-            if (!Guid.TryParse(id, out Guid productId))
-            {
-                return null;
-            }
+            Guid productId = Guid.TryParse(id, out Guid parsedId) ? parsedId : Guid.Empty;
 
             return await _productContext.products
             .Include(c => c.Category)

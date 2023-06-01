@@ -27,7 +27,7 @@ namespace Infra.Data.Repositories
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-             return await _categoryContext.categories.ToListAsync();
+            return await _categoryContext.categories.ToListAsync();
         }
 
         public async Task<Category> RemoveAsync(Category category)
