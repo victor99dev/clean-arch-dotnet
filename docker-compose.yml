@@ -14,3 +14,5 @@ services:
       POSTGRES_USER: victor99dev
       POSTGRES_PASSWORD: postgrespassword
       POSTGRES_DB: product-db
+    ports:
+      - 5432:5432
