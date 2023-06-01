@@ -2,7 +2,7 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 {
-    public interface ICategoryRepositoy
+    public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> GetByIdAsync(string? id);
