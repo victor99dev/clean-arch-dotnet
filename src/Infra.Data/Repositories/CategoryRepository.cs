@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Repositories
 {
@@ -14,27 +15,33 @@ namespace Infra.Data.Repositories
 
         public async Task<Category> CreateAsync(Category category)
         {
-            throw new NotImplementedException();
+            _categoryContext.Add(category);
+            await _categoryContext.SaveChangesAsync();
+            return category;
         }
 
         public async Task<Category> GetByIdAsync(string? id)
         {
-            throw new NotImplementedException();
+            return await _categoryContext.categories.FindAsync(id);
         }
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+             return await _categoryContext.categories.ToListAsync();
         }
 
         public async Task<Category> RemoveAsync(Category category)
         {
-            throw new NotImplementedException();
+            _categoryContext.Remove(category);
+            await _categoryContext.SaveChangesAsync();
+            return category;
         }
 
         public async Task<Category> UpdateAsync(Category category)
         {
-            throw new NotImplementedException();
+            _categoryContext.Update(category);
+            await _categoryContext.SaveChangesAsync();
+            return category;
         }
     }
 }
