@@ -15,9 +15,7 @@ namespace Domain.Entities
 
         public Category(Guid id, string name)
         {
-            DomainExceptionValidation.When(id != Id, "Invalid Id value");
             ValidateDomain(name);
-
             Id = id;
         }
 

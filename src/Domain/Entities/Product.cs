@@ -19,7 +19,6 @@ namespace Domain.Entities
 
         public Product(Guid id, string name, string description, decimal price, int stock, string image)
         {
-            DomainExceptionValidation.When(id != Id, "Invalid Id value");
             ValidateDomain(name, description, price, stock, image);
             Id = id;
         }
