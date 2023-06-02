@@ -15,10 +15,10 @@ namespace Infra.Data.EntitiesConfiguration
                     .IsRequired();
 
             builder.HasData(
-                new Category (new Guid(), "School Supplies"),
-                new Category (new Guid(), "Electronics"),
-                new Category (new Guid(), "Clothing and accessories"),
-                new Category (new Guid(), "Toy")
+                new Category (Guid.NewGuid(), "School Supplies"),
+                new Category (Guid.NewGuid(), "Electronics"),
+                new Category (Guid.NewGuid(), "Clothing and accessories"),
+                new Category (Guid.NewGuid(), "Toy")
             );
         }
     }
