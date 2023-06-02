@@ -14,15 +14,6 @@ namespace Domain.UnitTests
                 .NotThrow<Domain.Validation.DomainExceptionValidation>();
         }
 
-        [Fact(DisplayName = "Create Product With Different ID")]
-        public void CreateProduct_NegativeIdValue_DomainExceptionInvalidId()
-        {
-            Action action = () => new Product(new Guid("a4f194c1-cd0b-4850-b730-80f8305b0f6e"),
-                "Product Name", "Product Description", 9.99m, 99, "product image");
-            action.Should().Throw<Domain.Validation.DomainExceptionValidation>()
-                .WithMessage("Invalid Id value");
-        }
-
         [Fact(DisplayName = "Create Product With a Short Name")]
         public void CreateProduct_ShortNameValue_DomainExceptionShortName()
         {

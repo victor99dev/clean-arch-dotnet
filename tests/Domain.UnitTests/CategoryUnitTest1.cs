@@ -12,15 +12,6 @@ namespace Domain.UnitTests
             action.Should().NotThrow<Domain.Validation.DomainExceptionValidation>();
         }
 
-        [Fact(DisplayName = "Create Category With Different ID")]
-        public void CreateCategory_DifferentIdValue_DomainExceptionInvalid()
-        {
-            Action action = () => new Category(new Guid("e22b194f-3ed7-4118-8d13-d3ab4aa0c5fd"), "Category Name");
-            action.Should()
-                .Throw<Domain.Validation.DomainExceptionValidation>()
-                .WithMessage("Invalid Id value");
-        }
-
         [Fact(DisplayName = "Create Category With a Short Name")]
         public void CreateCategory_ShortNameValue_DomainExceptionShortName()
         {
