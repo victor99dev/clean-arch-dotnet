@@ -1,6 +1,6 @@
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
+WORKDIR /app
 
 # Copy csproj files and restore dependencies
 COPY . .
