@@ -1,3 +1,6 @@
+using Application.Interfaces;
+using Application.Mappings;
+using Application.Services;
 using Domain.Interfaces;
 using Infra.Data.Context;
 using Infra.Data.Repositories;
@@ -19,6 +22,11 @@ namespace Infra.IoC
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;
         }
