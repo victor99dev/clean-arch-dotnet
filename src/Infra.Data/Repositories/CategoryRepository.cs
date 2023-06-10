@@ -20,7 +20,7 @@ namespace Infra.Data.Repositories
             return category;
         }
 
-        public async Task<Category> GetByIdAsync(string? id)
+        public async Task<Category> GetByIdAsync(Guid? id)
         {
             return await _categoryContext.categories.FindAsync(id);
         }

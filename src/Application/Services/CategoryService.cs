@@ -22,7 +22,7 @@ namespace Application.Services
             return _mapper.Map<IEnumerable<CategoryDTO>>(categoriesEntity);
         }
 
-        public async Task<CategoryDTO> GetByIdAsync(string? id)
+        public async Task<CategoryDTO> GetByIdAsync(Guid? id)
         {
             var categorieEntity = await _categoryRepository.GetByIdAsync(id);
             return _mapper.Map<CategoryDTO>(categorieEntity);
@@ -37,10 +37,10 @@ namespace Application.Services
         public async Task UpdateAsync(CategoryDTO categoryDTO)
         {
             var categorieEntity = _mapper.Map<Category>(categoryDTO);
-            await _categoryRepository.RemoveAsync(categorieEntity);
+            await _categoryRepository.UpdateAsync(categorieEntity);
         }
 
-        public async Task RemoveAsync(string? id)
+        public async Task RemoveAsync(Guid? id)
         {
             var categorieEntity = _categoryRepository.GetByIdAsync(id).Result;
             await _categoryRepository.RemoveAsync(categorieEntity);
