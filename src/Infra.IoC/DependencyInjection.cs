@@ -28,6 +28,10 @@ namespace Infra.IoC
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
+            var myhandlers = AppDomain.CurrentDomain.Load("Application");
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myhandlers));
+
             return services;
         }
     }
