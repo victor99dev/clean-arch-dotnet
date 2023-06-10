@@ -41,18 +41,6 @@ namespace Application.Services
             return _mapper.Map<ProductDTO>(result);
         }
 
-        public async Task<ProductDTO> GetProductCategoryAsync(Guid? id)
-        {
-            var productByIdQuery = new GetProductByIdQuery(id.Value);
-
-            if (productByIdQuery == null)
-                    throw new Exception($"Entity could not be loaded.");
-
-            var result = await _mediator.Send(productByIdQuery);
-
-            return _mapper.Map<ProductDTO>(result);
-        }
-
         public async Task CreateAsync(ProductDTO productDTO)
         {
             var productCreateCommand = _mapper.Map<ProductCreateCommand>(productDTO);

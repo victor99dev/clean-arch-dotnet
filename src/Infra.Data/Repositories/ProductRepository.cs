@@ -7,7 +7,7 @@ namespace Infra.Data.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        ApplicationDbContext _productContext;
+        private readonly ApplicationDbContext _productContext;
         public ProductRepository(ApplicationDbContext context)
         {
             _productContext = context;
@@ -20,18 +20,11 @@ namespace Infra.Data.Repositories
             return product;
         }
 
-        public async Task<Product> GetByIdAsync(string? id)
+        public async Task<Product> GetByIdAsync(Guid? id)
         {
-            return await _productContext.products.FindAsync(id);
-        }
-
-        public async Task<Product> GetProductCategoryAsync(string? id)
-        {
-            Guid productId = Guid.TryParse(id, out Guid parsedId) ? parsedId : Guid.Empty;
-
-            return await _productContext.products
-            .Include(c => c.Category)
-            .SingleOrDefaultAsync(p => p.Id == productId);
+             return await _productContext.products
+                .Include(c => c.Category)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync()

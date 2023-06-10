@@ -6,7 +6,6 @@ namespace Application.Interfaces
     {
         Task<IEnumerable<ProductDTO>> GetProductsAsync();
         Task<ProductDTO> GetByIdAsync(Guid? id);
-        Task<ProductDTO> GetProductCategoryAsync(Guid? id);
         Task CreateAsync(ProductDTO productDTO);
         Task UpdateAsync(ProductDTO productDTO);
         Task RemoveAsync(Guid? id);
