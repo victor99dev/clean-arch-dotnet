@@ -5,10 +5,10 @@ namespace Application.Interfaces
     public interface IProductService
     {
         Task<IEnumerable<ProductDTO>> GetProductsAsync();
-        Task<ProductDTO> GetByIdAsync(string? id);
-        Task<ProductDTO> GetProductCategoryAsync(string? id);
+        Task<ProductDTO> GetByIdAsync(Guid? id);
+        Task<ProductDTO> GetProductCategoryAsync(Guid? id);
         Task CreateAsync(ProductDTO productDTO);
         Task UpdateAsync(ProductDTO productDTO);
-        Task RemoveAsync(string? id);
+        Task RemoveAsync(Guid? id);
     }
 }
