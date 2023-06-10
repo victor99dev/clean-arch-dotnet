@@ -4,22 +4,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.Data.EntitiesConfiguration
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public class CategoryConfiguration : EntityConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public CategoryConfiguration() : base("categories")
         {
-            builder.HasKey(e => e.Id);
+        }
+
+        public override void Configure(EntityTypeBuilder<Category> builder)
+        {
+            base.Configure(builder);
 
             builder.Property(c => c.Name)
+                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsRequired();
-
-            builder.HasData(
-                new Category (Guid.NewGuid(), "School Supplies"),
-                new Category (Guid.NewGuid(), "Electronics"),
-                new Category (Guid.NewGuid(), "Clothing and accessories"),
-                new Category (Guid.NewGuid(), "Toy")
-            );
         }
     }
 }
