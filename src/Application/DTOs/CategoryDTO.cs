@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs
@@ -7,6 +8,7 @@ namespace Application.DTOs
         public Guid id { get; set; }
 
         [Required(ErrorMessage = "The Name is Required")]
+        [DisplayName("Name")]
         [MinLength(3)]
         [MaxLength(100)]
         public string name {get; set; }
