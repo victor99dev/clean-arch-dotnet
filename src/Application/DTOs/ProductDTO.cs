@@ -10,11 +10,13 @@ namespace Application.DTOs
         public Guid id { get; set; }
 
         [Required(ErrorMessage = "The Name is Required")]
+        [DisplayName("Name")]
         [MinLength(3)]
         [MaxLength(100)]
         public string name { get; set; }
 
         [Required(ErrorMessage = "The Description is Required")]
+        [DisplayName("Description")]
         [MinLength(5)]
         [MaxLength(100)]
         public string description { get; set; }
@@ -36,9 +38,8 @@ namespace Application.DTOs
 
         public bool is_active { get; set; }
 
-        public Category category { get; set; }
-
         [DisplayName("Categories")]
+        [Required(ErrorMessage = "The category is required")]
         public Guid category_id { get; set; }
 
         public DateTime created_at { get; set; }

@@ -23,7 +23,6 @@ namespace Application.Mappings
                 .ForPath(dest => dest.Stock, opt => opt.MapFrom(src => src.stock))
                 .ForPath(dest => dest.Image, opt => opt.MapFrom(src => src.image))
                 .ForPath(dest => dest.CategoryId, opt => opt.MapFrom(src => src.category_id))
-                .ForPath(dest => dest.Category, opt => opt.MapFrom(src => src.category))
                 .ForPath(dest => dest.IsActive, opt => opt.MapFrom(src => src.is_active))
                 .ForPath(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.created_at))
                 .ForPath(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.updated_at))
