@@ -72,5 +72,23 @@ namespace WebUI.Controllers
             return View(product);
         }
 
+        [HttpGet()]
+        public async Task<IActionResult> Delete(Guid? id)
+        {
+            if (id == null) return NotFound();
+
+            var product = await _productService.GetByIdAsync(id);
+
+            if (product == null) return NotFound();
+
+            return View(product);
+        }
+
+        [HttpPost(), ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(Guid? id)
+        {
+            await _productService.RemoveAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }
