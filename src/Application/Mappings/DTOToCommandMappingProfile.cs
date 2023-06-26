@@ -15,8 +15,15 @@ namespace Application.Mappings
                 .ForPath(dest => dest.Stock, opt => opt.MapFrom(src => src.stock))
                 .ForPath(dest => dest.Image, opt => opt.MapFrom(src => src.image))
                 .ForPath(dest => dest.CategoryId, opt => opt.MapFrom(src => src.category_id))
-             .ReverseMap();
-            CreateMap<ProductDTO, ProductUpdateCommand>();
+            .ReverseMap();
+            CreateMap<ProductDTO, ProductUpdateCommand>()
+                .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.name))
+                .ForPath(dest => dest.Description, opt => opt.MapFrom(src => src.description))
+                .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.price))
+                .ForPath(dest => dest.Stock, opt => opt.MapFrom(src => src.stock))
+                .ForPath(dest => dest.Image, opt => opt.MapFrom(src => src.image))
+                .ForPath(dest => dest.CategoryId, opt => opt.MapFrom(src => src.category_id))
+            .ReverseMap();
         }
     }
 }
