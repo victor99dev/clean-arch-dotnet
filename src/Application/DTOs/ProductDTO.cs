@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Domain.Entities;
 
 namespace Application.DTOs
@@ -37,6 +38,9 @@ namespace Application.DTOs
         public string image { get; set; }
 
         public bool is_active { get; set; }
+
+        [JsonIgnore]
+        public CategoryDTO? category { get; set; }
 
         [DisplayName("Categories")]
         [Required(ErrorMessage = "The category is required")]
