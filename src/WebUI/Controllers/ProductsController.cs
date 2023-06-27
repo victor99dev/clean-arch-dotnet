@@ -9,12 +9,15 @@ namespace WebUI.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly IWebHostEnvironment _environment;
         public ProductsController(
             IProductService productService,
-            ICategoryService categoryService)
+            ICategoryService categoryService,
+            IWebHostEnvironment environment)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _environment = environment;
         }
 
         [HttpGet]
@@ -89,6 +92,23 @@ namespace WebUI.Controllers
         {
             await _productService.RemoveAsync(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            if (id == null) return NotFound();
+
+            var product = await _productService.GetByIdAsync(id);
+
+            if (product == null) return NotFound();
+
+            var wwwroot = _environment.WebRootPath;
+            var image = Path.Combine(wwwroot, "images\\" + product.image);
+            var exists =  System.IO.File.Exists(image);
+            ViewBag.ImageExist = exists;
+
+            return View(product);
         }
     }
 }
