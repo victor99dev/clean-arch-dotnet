@@ -7,19 +7,40 @@ namespace Infra.Data.Identity
     {
         public readonly UserManager<ApplicationUser> _userManager;
         public readonly SignInManager<ApplicationUser> _singInManager;
-        public Task<bool> Authenticate(string email, string password)
+
+        public AuthenticateService(SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager)
         {
-            throw new NotImplementedException();
+            _singInManager = signInManager;
+            _userManager = userManager;
         }
 
-        public Task Logout()
+        public async Task<bool> Authenticate(string email, string password)
         {
-            throw new NotImplementedException();
+            var result = await _singInManager.PasswordSignInAsync(email, password, false, lockoutOnFailure: false);
+            return result.Succeeded;
         }
 
-        public Task<bool> RegisterUser(string email, string password)
+        public async Task Logout()
         {
-            throw new NotImplementedException();
+            await _singInManager.SignOutAsync();
+        }
+
+        public async Task<bool> RegisterUser(string email, string password)
+        {
+            var applicationUser = new ApplicationUser
+            {
+                UserName = email,
+                Email = email,
+            };
+
+            var result = await _userManager.CreateAsync(applicationUser, password);
+
+            if (result.Succeeded)
+            {
+                await _singInManager.SignInAsync(applicationUser, isPersistent: false);
+            }
+            return result.Succeeded;
         }
     }
 }
