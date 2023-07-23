@@ -1,4 +1,5 @@
 using Domain.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.ViewModels;
 

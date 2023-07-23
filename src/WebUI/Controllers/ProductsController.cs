@@ -1,5 +1,6 @@
 using Application.DTOs;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -75,6 +76,7 @@ namespace WebUI.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin" )]
         [HttpGet()]
         public async Task<IActionResult> Delete(Guid? id)
         {
