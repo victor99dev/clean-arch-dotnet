@@ -51,8 +51,8 @@ namespace WebAPI.Controllers
         [HttpPut()]
         public async Task<IActionResult> Put(Guid id, CategoryDTO category)
         {
-            if (id != category.id) return BadRequest();
-            if (category == null) return BadRequest();
+            if (category == null || id != category.id) 
+                return BadRequest();
             
             await _categoryService.UpdateAsync(category); 
 

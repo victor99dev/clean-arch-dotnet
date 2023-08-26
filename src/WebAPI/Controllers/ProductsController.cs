@@ -51,8 +51,8 @@ namespace WebAPI.Controllers
         [HttpPut()]
         public async Task<IActionResult> Put(Guid id, ProductDTO product)
         {
-            if (id != product.id) return BadRequest();
-            if (product == null) return BadRequest();
+            if (product == null || id != product.id) 
+                return BadRequest();
             
             await _productService.UpdateAsync(product); 
 
