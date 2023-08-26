@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/WebUI/WebUI.csproj",
+                "${workspaceFolder}/CleanArchMvc.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/WebUI/WebUI.csproj",
+                "${workspaceFolder}/CleanArchMvc.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/WebUI/WebUI.csproj"
+                "${workspaceFolder}/CleanArchMvc.sln"
             ],
             "problemMatcher": "$msCompile"
         }
